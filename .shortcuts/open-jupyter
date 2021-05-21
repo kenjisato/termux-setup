@@ -1,0 +1,12 @@
+#!/bin/bash
+
+url=$(jupyter notebook list | sed -n '2{p;q}' | sed -e 's/ :: .*//')
+
+if [ -z $url ]; then
+	cd $HOME
+	jupyter notebook --no-browser &
+	url=http://localhost:8888/
+fi
+
+termux-open-url $url
+
